@@ -1,19 +1,11 @@
 
-
-
-Benchmark
-=========
-
-![](bench/benchmark_result.png)
-
-
 Install
 =======
 
 Install `GCC` or `MinGW` ([download here](http://tdm-gcc.tdragon.net/download)) at first,
 and then run these commands:
 
-1. `go get github.com/chai2010/webp`
+1. `go get github.com/hollson/webp`
 2. `go run hello.go`
 
 
@@ -31,7 +23,7 @@ import (
 	"io/ioutil"
 	"log"
 
-	"github.com/chai2010/webp"
+	"github.com/hollson/webp"
 )
 
 func main() {
@@ -99,9 +91,7 @@ Change the libwebp to fast method:
 	WebPConfigInitInternal
 	config->method = 0; // 4;
 
-BUGS
+REF
 ====
+https://developers.google.com/speed/webp/docs/api
 
-Report bugs to <chaishushan@gmail.com>.
-
-Thanks!
