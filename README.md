@@ -14,57 +14,45 @@ Example
 
 This is a simple example:
 
-```Go
+```go
 package main
 
 import (
-	"bytes"
-	"fmt"
-	"io/ioutil"
-	"log"
+    "io/ioutil"
+    "log"
+    "os"
 
-	"github.com/hollson/webp"
+    "github.com/hollson/webp/simple"
 )
 
 func main() {
-	var buf bytes.Buffer
-	var width, height int
-	var data []byte
-	var err error
+    // png ==> webp
+    img, err := os.Open("./asset/a.png")
+    if err != nil {
+        return
+    }
 
-	// Load file data
-	if data, err = ioutil.ReadFile("./testdata/1_webp_ll.webp"); err != nil {
-		log.Println(err)
-	}
+    res, err := simple.Convert2Webp(img, 30)
+    if err != nil {
+        return
+    }
+    ioutil.WriteFile("./asset/a.webp", res, 0666)
 
-	// GetInfo
-	if width, height, _, err = webp.GetInfo(data); err != nil {
-		log.Println(err)
-	}
-	fmt.Printf("width = %d, height = %d\n", width, height)
+    // webp ==> png
+    source, err := os.Open("./asset/a.webp")
+    if err != nil {
+        log.Fatalln(err)
+    }
+    data, err := simple.Webp2Others(source, "png", 90)
+    if err != nil {
+        log.Fatalln(err)
+    }
 
-	// GetMetadata
-	if metadata, err := webp.GetMetadata(data, "ICCP"); err != nil {
-		fmt.Printf("Metadata: err = %v\n", err)
-	} else {
-		fmt.Printf("Metadata: %s\n", string(metadata))
-	}
-
-	// Decode webp
-	m, err := webp.Decode(bytes.NewReader(data))
-	if err != nil {
-		log.Println(err)
-	}
-
-	// Encode lossless webp
-	if err = webp.Encode(&buf, m, &webp.Options{Lossless: true}); err != nil {
-		log.Println(err)
-	}
-	if err = ioutil.WriteFile("output.webp", buf.Bytes(), 0666); err != nil {
-		log.Println(err)
-	}
-    
-    fmt.Println("Save output.webp ok")
+    wp, err := os.Create("./asset/b.png")
+    if err != nil {
+        log.Fatalln(err)
+    }
+    wp.Write(data)
 }
 ```
 
