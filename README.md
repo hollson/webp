@@ -3,20 +3,6 @@
 
 ----
 
-webp
-=====
-
-```
-██╗    ██╗███████╗██████╗ ██████╗
-██║    ██║██╔════╝██╔══██╗██╔══██╗
-██║ █╗ ██║█████╗  ██████╔╝██████╔╝
-██║███╗██║██╔══╝  ██╔══██╗██╔═══╝
-╚███╔███╔╝███████╗██████╔╝██║
- ╚══╝╚══╝ ╚══════╝╚═════╝ ╚═╝
-```
-
-[![Build Status](https://travis-ci.org/chai2010/webp.svg)](https://travis-ci.org/chai2010/webp)
-[![GoDoc](https://godoc.org/github.com/chai2010/webp?status.svg)](https://godoc.org/github.com/chai2010/webp)
 
 Benchmark
 =========
